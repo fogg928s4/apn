@@ -1,0 +1,39 @@
+>>MATLAB BASICS!!!
+
+//PRINT
+disp('Hola mama no se ler')
+
+
+
+//; doesnt print
+//declare a variable
+`var name` = `value`
+>> sapo = 3 %% will print
+>> sepo = 6; %% wont print
+
+
+###################### VECTORS ######################
+//regular declaration
+>> vector = [1 2 4 84 -56 13 56-55 1]
+%% each val sep by a space
+
+>>vector0 = [4:99] 	%% [start : end]
+>>vector1 = [2:3:15] 	%% [start : step: end]
+
+
+###################### MATRIXES!!! ######################
+>>matrixName = [ row1; row2; row3; rowN]
+%% values also separated by a space
+
+>>eye(`size) %% identity matrix
+>>zeroes(`rows`,`cols`) %% MATRIX with 0s
+
+>>mat3=[4 5 54 ; 2 3 -6; 9 21 0]
+>>mat3(3,2) %% matrixes take arguments as i,j
+	ans: 21
+
+###################### TRIGONOMETRY N STUFF ######################
+>> pi %%value of pi
+>>  tan() sin() cos() %% uses radians
+>>  tand() sind() cosd() %% uses degrees
+>> log() log2 log10
