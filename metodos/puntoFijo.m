@@ -21,7 +21,7 @@ error = abs(x1 - x0);
 cont = 1;
 fprintf('n || X0\t\t\t || X1\t\t\t || error\n');
 fprintf('%d || %.15f || %.15f || %e\n', cont, double(x0), double(x1), double(error));
-while error < tol
+while error > tol
     x0=x1;
     x1=double(subs(f,x0));
     error=abs(x1-x0);
