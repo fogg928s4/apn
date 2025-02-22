@@ -24,7 +24,7 @@ if subs(f,x1) * subs(f,x0) < 0
         else
             x0 = x2;
         end
-        x2 = x1 - ( subs(f,x1) * (x1- x0)) / ( subs(f,x1) - subs(f,x0) );
+        x2 = double(x1 - ( subs(f,x1) * (x1- x0)) / ( subs(f,x1) - subs(f,x0) ));
         error = abs(x2 - x2prev);
         fprintf('%d || %.15f || %.15f || %.15f || %e\n', cont, double(x0) , double(x1) , double(x2),  double(error));
 
