@@ -11,7 +11,7 @@ tol=10^-tol;
 %% realizar la estimacion
 fx1 = subs(f, x1);
 fx0 = subs(f, x0);
-x2 = x1 -( (fx1 * (x1 - x0)) / (fx1 - fx0));
+x2 = double(x1 - ( (fx1 * (x1 - x0)) / (fx1 - fx0)));
 error = abs(x2 - x1);
 cont = 1;
 %% loop and show results
@@ -21,9 +21,9 @@ while error > tol
     cont = cont +1;
     x0 = x1;
     x1 = x2;
-    fx1 = subs(f, x1);
-    fx0 = subs(f, x0);
-    x2 = x1 - (fx1 * (x1 - x0)) / (fx1 - fx0);
+    fx1 = double(subs(f, x1));
+    fx0 = double(subs(f, x0));
+    x2 = double(x1 - (fx1 * (x1 - x0)) / (fx1 - fx0));
     error = abs(x2 - x1);
     fprintf('%d || %.15f || %.15f || %.15f || %e\n', cont, double(x0) , double(x1) , double(x2),  double(error));
 end
