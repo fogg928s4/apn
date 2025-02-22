@@ -19,7 +19,7 @@ if subs(f,x1) * subs(f,x0) < 0
 	while error > tol
         x2prev = x2;
         cont = cont + 1;
-        if subs(f,x0) * subs(f,x2) < 0
+        if (double(subs(f,x0) * subs(f,x2))) < 0
             x1 =x2;
         else
             x0 = x2;
