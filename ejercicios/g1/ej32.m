@@ -2,6 +2,6 @@
 %% canal feo
 
 syms x;
-Rh = cot(x) / (2 * csc(x) + 2 * cot(x));
+Rh = (1/tand(x)) / (2 * cscd(x) + 2 * cotd(x));
 
 eq = diff(Rh);
