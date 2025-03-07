@@ -3,16 +3,16 @@
 syms x;
 format long;
 disp('############ METODO DE INTERPOLACION DE LAGRANGE ############');
-X = input('Ingrese los valores de x');
+X = input('Ingrese los valores de x: ');
 % tambien puede haber un input para Y
 f = input('Ingrese la funcion: ');
-Y = subs(f,x);
+Y = subs(f,X);
 
 aprox = input('Ingrese el valor a aproximar: ');
 
 size = length(X);
 
-%construyendo los las ex de lagrange (PI)
+%% construyendo los las ex de lagrange (PI)
 for i=1:size
     num = 1;
     den = 1;
@@ -27,7 +27,7 @@ for i=1:size
     pretty(L(i));
 end
 
-% construcyendo el polinomio (SIGMA)
+%% construcyendo el polinomio (SIGMA)
 pol = 0;
 for i = 1: size
     pol = pol + double(Y(i)) * L(i);
@@ -39,6 +39,6 @@ pretty(vpa(pol,9));
 ValAprox = subs(pol, aprox); 
 exacto = subs(f, aprox);
 error = abs(exacto - ValAprox);
-fprintf('El valor aproximado de la fun es %.15f', double(ValAprox));
-fprintf('El valor real de la fun es %.15f', double(exacto));
-fprintf('El error es %e', double(error));
+fprintf('El valor aproximado de la fun es %.15f \n', double(ValAprox));
+fprintf('El valor real de la fun es %.15f \n', double(exacto));
+fprintf('El error es %e \n', double(error));
