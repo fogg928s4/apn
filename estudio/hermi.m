@@ -31,7 +31,17 @@ end
 % segundas a partir
 for j=3:n
     for i=j:n
-        
-        Q(i,j) = 
+        Q(i,j) = (Q(i, j-1) - Q(i-1,j-1)) / (Z(i) + Z(i-j+1));
     end
+end
+
+%%armando el polinomio
+P = Q(1,1);
+for u=2:n
+    %%factores
+    temp = 1;
+    for v=1:u-1 
+        temp = temp * (x - Z(v));
+    end
+    P = P + Q(u,u) * temp;
 end
