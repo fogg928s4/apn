@@ -1,5 +1,5 @@
-%% ejercicicio 16 guia 2
-% valores iniciales
+%% ejercicicio 16 guia 2 (HECHO CON HERMITE)
+% valores iniciales 
 syms x;
 
 X = [0 3 5 8 13];
@@ -44,7 +44,7 @@ for i=2:n
     factores =1;
     for j=1:i-1
         % los factores son los q acompanan cada a
-        factores = factores *( x - Z(j));
+        factores = factores * ( x - Z(j));
     end
     pol = pol + F(i,i) * factores;
 end
