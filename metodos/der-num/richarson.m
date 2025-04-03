@@ -1,4 +1,5 @@
 %% extrapol de richarson
+% ejemplo de la clase
 syms x;
 g = x * (tan(x))^2 + x ^2 * acot(exp(5*x));
 
