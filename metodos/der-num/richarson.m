@@ -25,4 +25,4 @@ for j = 2: n
     end
 end
 
-aproximado = N(1, n)
+aproximado = N(1, n);
