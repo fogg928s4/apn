@@ -1,26 +1,22 @@
-%% ejercicio 4 de ley de kirchoff
-format long;
-syms x;
+% Ejercicio 4 Guia 3
+% datos
+L = 0.98; % induc
+R = 0.142; %res
 
-L = 0.98; % inductancia
-R = 0.142; %resistencia 
-% evaluar en, luego de aproximar V(t)
-tf1 = 1; tf2 = 1.02; tf3 = 1.04;
-
-T = [1, 1.01, 1.02, 1.03, 1.04];
+t1 = 1; t2 = 1.02;
+T = [1.0, 1.01, 1.02, 1.03, 1.04];
 I = [3.1, 3.12, 3.14, 3.18, 3.34];
 
-syms x;
-h = T(2) - T(1); %lo poco q cambio h entre ambos
+% Para t = 1. forma 5Pt -> Progresiva
+h = T(2) - T (1);
 
-%% FORMULA PROGRESIVA de 5 puntos pq quiero aproximar a 
-di = (-25 * I(1) + 48 * I(2) - 36*I(3) + 16*I(4) - 3 * I(5)) / (12*h);
-voltaje(1) = L * di + R*I(1);
+didt1 = (-25 * I(1) + 48 * I(2) - 36 * I(3) + 16 * I(4) - 3 * I(5)) / (12 * h);
 
-%% en t = 1.02, al haber dos puntos arriba y 2 abajo, se hace la centrada
-di = (I(1)- 8 * I(2) + 8*I(4)- I(5))/ (12 * h);
-voltaje(2) = L * di + R*I(3);
+% Para t = 2. forma 5PT -> Centrada
+didt2 = (I(1) - 8 * I(2) + 8 * I(4) - I(5)) / (12 * h);
 
-%% en t = 1.04 usamos la regresiva pq solo hay puntos menores
-di = (25 * I(5) - 48 * I(4) + 36*I(3) - 16*I(2) + 3 * I(1)) / (12*h);
-voltaje(3) = L * di + R*I(5);
+V1 = double(L * didt1 + R * I(1));
+V2 = double(L * didt2 + R * I(3));
+
+fprintf('El voltaje en t = 1 es %.8f\n',V1);
+fprintf('El voltaje en t = 1.02 es %.8f\n',V2);
