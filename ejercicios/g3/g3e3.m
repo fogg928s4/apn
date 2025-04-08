@@ -3,30 +3,30 @@
 syms x;
 g = 7 * (log(x))^2 + 3 * tan(5 * x);
 
-dg = diff(g); % derivada
+dg = diff(g); % derivada de g
+n = 7; h = 1 / 80;
+c = 1.65; % el valor al que se aproximara
 
-h = 1 / 80;
-c = 1.65; % el vaor a aproximar
-size = 7; % tamano de N
-
-N = zeros(size);
-htemp = h; % primera iteeracion no va partido
-% prima columna
-for i = 1: size 
-    N(i,1) = (subs(g, c + htemp) - subs(g, c - htemp)) / (2 * htemp);
-    htemp = htemp/2; % se parte despues de cada iteracion
+%% Primera columna form 3Pt -> Centrada
+N = zeros(n); % matrz
+htemp = h;
+for i = 1: n
+    N(i,1) = (subs(g, c +htemp) - subs(g, c- htemp)) / (2 * htemp);
+    htemp = htemp / 2;
 end
 
-%% siguiente columnas;
-for j = 2: size
-    for i = 1:(size - j + 1)
-        cua = 4 ^ (j - 1);
-        N(i,j) = (cua * N(i+1, j -1) - N(i,j-1) ) / (cua - 1);
+%% siguientes columnas
+for j = 2: n
+    cua = 4 ^ (j - 1);
+    for i = 1: n - j + 1
+        N(i,j) = ( cua * N(i+1, j -1) - N(i,j-1)) / (cua - 1);
     end
 end
 
-aprox = N(1,size);
-real = subs(dg, c);
-error = abs(aprox - real);
+aprox = double(N(1, n));
+exact = double(subs(dg, c));
+error = abs(aprox - exact);
 
-fprintf('El valor en %.2f es de %.8f\n real es %.8f \n y error es %e\n', c, double(aprox), double(real), double(error));
+fprintf('Aprox = %.15f\n', aprox);
+fprintf('Exacto = %.15f\n', exact);
+fprintf('Error = %e\n', double(error));
