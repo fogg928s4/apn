@@ -1,28 +1,34 @@
-%% extrapol de richarson
-% ejemplo de la clase
+%% Extrapolacion de Richarson
+% datos
 syms x;
-g = x * (tan(x))^2 + x ^2 * acot(exp(5*x));
+disp('###### DERIVACION NUMERICA DE RICHARSON ######');
 
-c = 0.35; h = 1/100;
-n = 6;
-N = zeros(n);
+f = input('Ingrese la funcion en terminos de x f(x) = ');
+n = input('Ingrese el tamaño de la matriz: ');
+h = input('Ingrese el valor de h: ');
+c = input('Valor al que se aproximara: ');
 
-%% primera columna
-for i=1:n
-    N(i,1) = (subs(g, c + h * 2^(1-i)) -  subs(g, c - h * 2^(1-i))) / (h * 2^(2-i));
+df = diff(f);
+hTemp = h;
+N = zeros(n); %mtz trang sup
+% primera col con 3P cent
+for i = 1:n
+    N(i,1) = (subs(f, c + hTemp) - subs(f, c-hTemp)) / (2 * hTemp);
+    hTemp = hTemp / 2;
 end
 
-%% segunda col
-
- %   for i = 1:(n-1)
- %       N(i, 2) = (4 * N(i+1, 1) - N(i, 1) )/ 3;
- %   end
-
-%% todas las col
-for j = 2: n
-    for i = 1:(n - j +1)
-        N(i, j) = (4 ^(j-1) * N(i+1, j-1) - N(i, j-1) )/ (4^(j-1)-1);
+% siguientes columnas
+for j = 2:n
+    cua = 4 ^ (j-1);
+    for i = 1: n-j+1
+        N(i,j) = (cua * N(i+1, j-1) - N(i,j-1)) / (cua - 1);
     end
 end
 
-aproximado = N(1, n);
+aprox = double(N(1,n));
+exact = double(subs(df, c));
+error = abs(aprox - exact);
+
+fprintf('Aprox = %.15f\n', aprox);
+fprintf('Exact = %.15f\n', exact);
+fprintf('Error = %e\n', error);
