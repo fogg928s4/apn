@@ -9,7 +9,7 @@ a = 0; b = pi/4;
 
 %% Integracion de Romberg de R6
 
-n = 6; h = (b-a) /n;
+n = 6; h = (b-a);
 hk = h; % con este operamos para no molestar el h og
 R = zeros(n);
 R(1,1) =(hk / 2) * (subs(f,a) + subs(f,b));
