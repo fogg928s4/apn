@@ -30,7 +30,7 @@ for j=2:n
     for i =j:n
         R(i,j) = (cua * R(i, j-1) - R(i-1, j-1)) / (cua - 1);
     end
-end
+endw
 
 aprox = double(R(n,n));
 exact = double(int(f,a,b));
