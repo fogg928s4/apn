@@ -1,3 +1,6 @@
+% Metodo de Runge Kutta de orden 4
+% Solo hay un metodo para este orden
+
 syms y t;
 
 disp('###### Metodo Runge Kutta orden 4 #######');
@@ -15,8 +18,9 @@ n = length(T) - 1;
 Y(1) = y0;
 i=1;
 exact = subs(F, T(i));
-fprintf('i\t\t\t\t || t \t\t\t || Y(t) \t\t\t || F(t) \n');
-fprintf('%d\t || %.9f\t || %.9f\t || %.15f\t \n', i, double(T(i)), double(Y(i)));
+error = abs(exact - Y(i));
+fprintf('i\t\t\t\t || t \t\t\t || Y(t) \t\t\t || F(t) \t\t\t|| error\n');
+fprintf('%d\t || %.9f\t || %.9f\t || %.15f\t || %ee \n', i, double(T(i)), double(Y(i)), double(error));
 
 for i=1: n
     fprintf('*********************************************************\n');
@@ -27,7 +31,7 @@ for i=1: n
     % solucion Yi+1
     Y(i+1) = double(Y(i ) + (h/6) * (k2 +2*k2 +2*k3 + k4));
     exact = double(sub(F, t, T(i+1)));
-    error = double(abs(exact - Y(i+1) ))
-    fprintf(' %d || %.15f || %.15f || %.15f || %.15f \n', i+1, t, Y(i), exact);
+    error = double(abs(exact - Y(i+1) ));
+    fprintf(' %d || %.15f || %.15f || %.15f || %.15f || %e\n', i+1, t, Y(i), exact, error);
     
 end
