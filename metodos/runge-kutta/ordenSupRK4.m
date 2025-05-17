@@ -19,8 +19,12 @@ n = length(T) - 1; %recorda el -1!!!!;
 U1 = zeros(1,n); % matriz
 U2 = zeros(1,n); % matriz
 U3 = zeros(1,n); % matriz
-U1(1) = u10; % matriz
-U2(1) = u30; % matriz
-U3(1) = u20; % matriz
+U1(1) = u10; % primera pos es val inicial
+U2(1) = u30; % primera pos es val inicial
+U3(1) = u20; % primera pos es val inicial
 
+for i=1:n
+    fprintf('i=%2.0f\n',i)
 
+    fprintf('t=%.15f\n',T(i+1))
+end

@@ -11,13 +11,14 @@ df3 = input('Tercera derivada de f: ');
 F = input('Solucion F(t) = ');
 
 % procesando
-T = [intv(1): h: intv(2)];
+a = intv(1); b = intv(2);
+T = [a:h:b];
 n = length(T) - 1;
 Y(1) = y0;
 i=1;
 exact = double(subs(F, {t,y}, {T(i), Y(i)}));
 error = double(abs(exact - Y(i)));
-fprintf('i\t\t|| ti\t\t|| y(ti)\t\t|| F(ti)\t\t|| Error\n');
+fprintf('i|| ti\t\t|| y(ti)\t\t|| F(ti)\t\t|| Error\n');
 fprintf('%d||%.10f||%.10f||%.10f||%e\n', i,double(T(i)), double(Y(i)), exact, error);
 for i = 1: n
     fi = double(subs(f, {t, y}, {T(i), Y(i)}));    
