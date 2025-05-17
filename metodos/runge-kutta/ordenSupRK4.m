@@ -27,4 +27,46 @@ for i=1:n
     fprintf('i=%2.0f\n',i)
 
     fprintf('t=%.15f\n',T(i+1))
+
+    k11=double(subs(fu1,{t,u1,u2,u3},{T(i),U1(i),U2(i),U3(i)}))
+    k12=double(subs(fu2,{t,u1,u2,u3},{T(i),U1(i),U2(i),U3(i)}))
+    k13=double(subs(fu3,{t,u1,u2,u3},{T(i),U1(i),U2(i),U3(i)}))
+
+    k21=double(subs(fu1,{t,u1,u2,u3},{T(i)+h/2,U1(i)+(k11*h)/2,U2(i)+(k12*h)/2,U3(i)+(k13*h)/2}))
+
+    k22=double(subs(fu2,{t,u1,u2,u3},{T(i)+h/2,U1(i)+(k11*h)/2,U2(i)+(k12*h)/2,U3(i)+(k13*h)/2}))
+
+    k23=double(subs(fu3,{t,u1,u2,u3},{T(i)+h/2,U1(i)+(k11*h)/2,U2(i)+(k12*h)/2,U3(i)+(k13*h)/2}))   
+
+    
+
+    k31=double(subs(fu1,{t,u1,u2,u3},{T(i)+h/2,U1(i)+(k21*h)/2,U2(i)+(k22*h)/2,U3(i)+(k23*h)/2}))
+
+    k32=double(subs(fu2,{t,u1,u2,u3},{T(i)+h/2,U1(i)+(k21*h)/2,U2(i)+(k22*h)/2,U3(i)+(k23*h)/2}))
+
+    k33=double(subs(fu3,{t,u1,u2,u3},{T(i)+h/2,U1(i)+(k21*h)/2,U2(i)+(k22*h)/2,U3(i)+(k23*h)/2 }))
+
+    
+
+    k41=double(subs(fu1,{t,u1,u2,u3},{T(i)+h,U1(i)+k31*h,U2(i)+k32*h,U3(i)+k33*h}))
+
+    k42=double(subs(fu2,{t,u1,u2,u3},{T(i)+h,U1(i)+k31*h,U2(i)+k32*h,U3(i)+k33*h}))
+
+    k43=double(subs(fu3,{t,u1,u2,u3},{T(i)+h,U1(i)+k31*h,U2(i)+k32*h,U3(i)+k33*h}))
+
+   
+
+    U1(i+1)=double(U1(i)+(h/6)*(k11+2*k21+2*k31+k41));
+
+    U2(i+1)=double(U2(i)+(h/6)*(k12+2*k22+2*k32+k42));
+
+    U3(i+1)=double(U3(i)+(h/6)*(k13+2*k23+2*k33+k43));
+
+    
+
+    fprintf('U1(t)=y(t)=%.15f\n',U1(i+1))
+
+    fprintf('U2(t)=Dy(t)=%.15f\n',U2(i+1))
+
+    fprintf('U3(t)=D2y(t)=%.15f\n',U3(i+1))
 end
